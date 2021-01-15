@@ -33,6 +33,7 @@ html {
 
 body {
   margin: 0;
+  background: linear-gradient(to right, #b6fbff, #83a4d4);
 }
 
 .container {
