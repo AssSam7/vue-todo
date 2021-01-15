@@ -20,7 +20,7 @@ This app is deployed to netlify on the following link
 
 **URL**: https://heuristic-goldstine-b9c99b.netlify.app/
 
-## ✍🏻 [Author]
+### ✍🏻 [Author]
 * Twitter : [@malsaslam97](https://twitter.com/malsaslam97)
 * Github: [@AssSam7](https://github.com/AssSam7)
 * LinkedIn: [Aslam Mohammed](https://www.linkedin.com/in/malsaslam97/)
