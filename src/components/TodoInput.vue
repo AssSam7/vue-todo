@@ -21,7 +21,6 @@ export default {
       if (this.todoItem) {
         this.$store.commit('addTodo', { value: this.todoItem });
         this.todoItem = '';
-        console.log(this.$store.getters.getListItems);
       }
     }
   }

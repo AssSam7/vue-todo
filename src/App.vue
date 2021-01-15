@@ -20,9 +20,6 @@ export default {
   components: {
     TodoInput,
     TodoList
-  },
-  beforeCreate() {
-    this.$store.commit('initialiseStore');
   }
 };
 </script>

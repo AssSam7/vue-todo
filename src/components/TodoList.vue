@@ -61,7 +61,6 @@ export default {
     performDelete(item) {
       if (!item.completed) {
         this.$store.commit('deleteTodo', { value: item.id });
-        console.log(this.$store.getters.getListItems);
       }
     },
     processTodo(id, e) {

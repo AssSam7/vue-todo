@@ -1,5 +1,3 @@
-// import { uuid } from 'vue-uuid';
-
 export default {
   addTodo(state, payload) {
     // let newId = state.todoList.length ? state.todoList.length : 0;
