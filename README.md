@@ -18,7 +18,7 @@
 ### 🔥 [Live]
 This app is deployed to netlify on the following link
 
-**URL**: https://todo-js-node.herokuapp.com/
+**URL**: https://heuristic-goldstine-b9c99b.netlify.app/
 
 ## ✍🏻 [Author]
 * Twitter : [@malsaslam97](https://twitter.com/malsaslam97)
