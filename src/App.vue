@@ -1,10 +1,14 @@
 <template>
   <div class="container-fluid">
-    <h1>Welcome to ToDo App</h1>
+    <h1>Welcome to Todo App 👋</h1>
     <div class="container">
       <todo-input></todo-input>
       <todo-list></todo-list>
     </div>
+    <footer>
+      Made using Vue + Vuex -
+      <a href="https://github.com/AssSam7/vue-todo" target="_blank">@AssSam7</a>
+    </footer>
   </div>
 </template>
 
@@ -17,8 +21,9 @@ export default {
     TodoInput,
     TodoList
   },
-  methods: {},
-  computed: {}
+  beforeCreate() {
+    this.$store.commit('initialiseStore');
+  }
 };
 </script>
 
@@ -37,13 +42,39 @@ body {
 }
 
 .container {
-  max-width: 35rem;
-  margin: 5rem auto;
+  max-width: 50rem;
+  margin: 3rem auto;
 }
 
 h1 {
+  margin-top: 3rem;
+  color: #222;
   text-align: center;
   font-size: 2rem;
-  color: #3b5998;
+  font-family: 'Tahoma';
+  font-weight: 400;
+}
+
+a {
+  color: #18bc9c;
+  text-decoration: none;
+  background-color: initial;
+  transition: all 0.1s ease-in-out;
+}
+
+a:hover {
+  color: #0f7864;
+  text-decoration: underline;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  text-align: center;
+  color: #212529;
+  font-family: 'Tahoma';
 }
 </style>

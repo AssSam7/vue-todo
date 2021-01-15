@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-// import { uuid } from 'vue-uuid';
 import rootMutations from './mutations.js';
 import rootGetters from './getters.js';
 
@@ -16,7 +15,6 @@ const store = createStore({
     };
   },
   mutations: rootMutations,
-  actions: {},
   getters: rootGetters
 });
 

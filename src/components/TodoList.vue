@@ -5,21 +5,31 @@
       v-for="(todo, index) in getListItems"
       :key="index"
       :data-id="todo.id"
+      @click="processTodo(todo.id, $event)"
     >
       <input
         type="checkbox"
         name="task-completed"
         v-model="todo.completed"
         :data-id="todo.id"
+        :class="{ 'todo-check-completed': todo.completed }"
       />
-      <h3 :data-id="todo.id">{{ todo.text }}</h3>
-      <button class="btn-edit" @click="performEdit(todo)" :data-id="todo.id">
+      <h3 :data-id="todo.id" :class="{ 'todo-text-completed': todo.completed }">
+        {{ todo.text }}
+      </h3>
+      <button
+        class="btn-edit"
+        @click="performEdit(todo)"
+        :data-id="todo.id"
+        :class="{ 'todo-button-completed': todo.completed }"
+      >
         Edit
       </button>
       <button
         class="btn-delete"
         :data-id="todo.id"
-        @click="performDelete(todo.id)"
+        @click="performDelete(todo)"
+        :class="{ 'todo-button-completed': todo.completed }"
       >
         Delete
       </button>
@@ -38,14 +48,28 @@ export default {
   },
   methods: {
     performEdit(item) {
-      const todoText = prompt('Enter your updated todo item', item.text);
-      if (todoText && todoText !== item.text) {
-        this.$store.commit('editTodo', { id: item.id, value: todoText.trim() });
+      if (!item.completed) {
+        const todoText = prompt('Enter your updated todo item', item.text);
+        if (todoText && todoText !== item.text) {
+          this.$store.commit('editTodo', {
+            id: item.id,
+            value: todoText.trim()
+          });
+        }
       }
     },
-    performDelete(id) {
-      this.$store.commit('deleteTodo', { value: id });
+    performDelete(item) {
+      this.$store.commit('deleteTodo', { value: item.id });
       console.log(this.$store.getters.getListItems);
+    },
+    processTodo(id, e) {
+      console.log(e.target);
+      if (
+        !e.target.classList.contains('btn-delete') &&
+        !e.target.classList.contains('btn-edit')
+      ) {
+        this.$store.commit('completeTodo', { value: id });
+      }
     }
   },
   computed: {
@@ -56,21 +80,27 @@ export default {
 
 <style scoped>
 .list-container {
-  border: 1px solid #cccccc;
-  border-radius: 5px;
+  overflow: hidden;
+  border-radius: 10px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
 }
 
 .list-item {
-  background: rgba(255, 255, 255, 0.5);
-  margin-bottom: 0.5rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   display: flex;
   align-items: center;
+
+  transition: transform 0.5s ease-in-out;
+}
+
+.list-item:hover {
+  transform: translateY(-0.2rem) scale(1.02);
 }
 
 .btn-edit,
@@ -110,11 +140,22 @@ input[type='checkbox'] {
   transform: scale(2.2);
   -ms-transform: scale(2.2);
   -webkit-transform: scale(2.2);
-  /* padding: 10px; */
 }
 
 h3 {
   flex: 1;
   text-align: left;
+  color: #495057;
+}
+
+/* Dynamic Class Bindings */
+
+.todo-text-completed {
+  color: rgba(73, 80, 87, 0.1);
+  text-decoration: line-through;
+}
+
+.todo-button-completed {
+  opacity: 0.3;
 }
 </style>

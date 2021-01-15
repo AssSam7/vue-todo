@@ -18,6 +18,7 @@ export default {
     state.todoList.splice(index, 1);
   },
   completeTodo(state, payload) {
-    state.todoList[payload.id - 1].completed = true;
+    const index = state.todoList.findIndex(todo => todo.id === payload.value);
+    state.todoList[index].completed = !state.todoList[index].completed;
   }
 };
